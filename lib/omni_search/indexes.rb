@@ -64,7 +64,6 @@ module OmniSearch
       @@list ||= []
     end
 
-
     def lazy_load
       Indexes::Lazy.load
       @@lazy_loaded = true
