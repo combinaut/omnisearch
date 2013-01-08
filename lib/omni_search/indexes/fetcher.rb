@@ -21,10 +21,21 @@ module OmniSearch
     # while a plaintext index is straightforward, a trigram index
     # requires the index class to do some work
     attr_accessor :index_type
+
+    #EXPLAIN: Using a class variable as storage is probably not a good choice
+    # that means we have a buffer for each instance
+    # there is really no way to clear that unless we somehow get inside every passenger instance
+    # memcache or redis as options?
     @@buffer ||= {}
+
+    def self.expire_buffer!
+      @@buffer = {}
+    end
+
     def initialize(index_class, index_type)
       @index_class = index_class
       @index_type  = index_type
+      #EXPLAIN: Do we have to copy the entire buffer every time. Think of the memory!
       @buffer      = @@buffer["#{@index_type}#{@index_class}"]
     end
 
@@ -34,8 +45,8 @@ module OmniSearch
 
     def buffer_save
       @@buffer["#{@index_type}#{@index_class}"] = @records
-
     end
+
     def records
       return @buffer if @buffer
       @records ||= load

@@ -3,6 +3,7 @@ module OmniSearch
   # Indexes::Base
 
   class Indexes::Base
+    #EXPLAIN: This class variable seems to be unused?
     @@contents = Hash.new
     STORAGE_ENGINE = nil
 
@@ -10,8 +11,6 @@ module OmniSearch
       instance = self.new
       instance.build_index(collection)
     end
-
-    #cattr_accessor :contents
 
     def build_index(collection)
       collection

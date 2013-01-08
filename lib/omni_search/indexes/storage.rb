@@ -87,7 +87,6 @@ module OmniSearch
       def mkdir
 
         unless File.exists?(root_path) and File.directory?(root_path)
-          #puts "creating directories"
           `mkdir -p -v #{root_path}`
         end
       end
@@ -102,7 +101,6 @@ module OmniSearch
     class Plaintext < Base
       BASE_FILENAME = 'omnisearch_plaintext_index'
     end
-
 
     class Trigram < Base
       BASE_FILENAME = 'omnisearch_trigram_index'
