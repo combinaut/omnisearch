@@ -60,7 +60,7 @@ module OmniSearch
 
       def load
         unless exists?
-          raise MissingIndexFile, "could not file the file #(file_path)"
+          raise MissingIndexFile, "could not find the file #{file_path}"
         end
         file   = File.read(file_path)
         loaded = YAML::load(file);
