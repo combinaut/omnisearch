@@ -42,6 +42,3 @@ require 'omni_search/correction'
 
 require 'omni_search/configuration'
 require 'tools/trigram'
-
-#LOAD RAKE TASKS, if you happen to be rake
-load File.join(here, "../rails/tasks.rake") if defined?(Rake)
